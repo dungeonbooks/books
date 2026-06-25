@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/dungeonbooks/books/internal/cli"
+	"github.com/dungeonbooks/books/internal/clierr"
 )
 
 func main() {
@@ -17,6 +18,6 @@ func main() {
 		os.Exit(1)
 	default:
 		fmt.Fprintln(os.Stderr, "books:", err)
-		os.Exit(1)
+		os.Exit(clierr.Code(err))
 	}
 }
