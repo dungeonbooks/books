@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
-	"github.com/dungeonbooks/tools/internal/discover"
+	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/discover"
 )
 
 // update rewrites the golden fixtures instead of comparing against them:
