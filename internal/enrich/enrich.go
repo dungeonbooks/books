@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
 )
 
 const (

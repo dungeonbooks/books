@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
 )
 
 type OpenLibrary struct {

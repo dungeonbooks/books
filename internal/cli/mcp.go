@@ -1,9 +1,9 @@
 package cli
 
 import (
-	"github.com/dungeonbooks/tools/internal/enrich"
-	"github.com/dungeonbooks/tools/internal/mcpsrv"
-	"github.com/dungeonbooks/tools/internal/platform/config"
+	"github.com/dungeonbooks/marty-cli/internal/enrich"
+	"github.com/dungeonbooks/marty-cli/internal/mcpsrv"
+	"github.com/dungeonbooks/marty-cli/internal/platform/config"
 	"github.com/spf13/cobra"
 )
 

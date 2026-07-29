@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
-	"github.com/dungeonbooks/tools/internal/enrich"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/enrich"
 )
 
 // ConfidenceFloor is the score at or above which a match is called verified.

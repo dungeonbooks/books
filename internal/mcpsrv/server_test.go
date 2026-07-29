@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
-	"github.com/dungeonbooks/tools/internal/resolve"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/resolve"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
 )
 
 type fakeOL struct{ byISBN, search bookmeta.Book }

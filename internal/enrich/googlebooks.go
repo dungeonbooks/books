@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/dungeonbooks/tools/internal/bookmeta"
+	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
 )
 
 type GoogleBooks struct {

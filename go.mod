@@ -1,4 +1,4 @@
-module github.com/dungeonbooks/tools
+module github.com/dungeonbooks/marty-cli
 
 go 1.25.0
 

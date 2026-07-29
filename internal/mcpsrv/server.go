@@ -9,7 +9,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/dungeonbooks/tools/internal/resolve"
+	"github.com/dungeonbooks/marty-cli/internal/resolve"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 

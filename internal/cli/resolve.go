@@ -7,9 +7,9 @@ import (
 	"io"
 	"strings"
 
-	"github.com/dungeonbooks/tools/internal/enrich"
-	"github.com/dungeonbooks/tools/internal/platform/config"
-	"github.com/dungeonbooks/tools/internal/resolve"
+	"github.com/dungeonbooks/marty-cli/internal/enrich"
+	"github.com/dungeonbooks/marty-cli/internal/platform/config"
+	"github.com/dungeonbooks/marty-cli/internal/resolve"
 	"github.com/spf13/cobra"
 )
 

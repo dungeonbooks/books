@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dungeonbooks/tools/internal/cli"
+	"github.com/dungeonbooks/marty-cli/internal/cli"
 )
 
 func main() {

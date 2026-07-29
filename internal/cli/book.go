@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/dungeonbooks/tools/internal/enrich"
-	"github.com/dungeonbooks/tools/internal/platform/config"
+	"github.com/dungeonbooks/marty-cli/internal/enrich"
+	"github.com/dungeonbooks/marty-cli/internal/platform/config"
 	"github.com/spf13/cobra"
 )
 
