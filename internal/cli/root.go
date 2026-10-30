@@ -8,8 +8,8 @@ var jsonOut bool
 
 func Execute() error {
 	root := &cobra.Command{
-		Use:           "marty",
-		Short:         "Marty — the bookseller's wizard",
+		Use:           "books",
+		Short:         "Book lookup and ISBN resolution for Dungeon Books",
 		SilenceUsage:  true,
 		SilenceErrors: true,
 	}

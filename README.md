@@ -1,15 +1,15 @@
-# marty
+# books
 
-Marty — the bookseller's wizard, as a Go CLI. Internal tooling for Dungeon Books.
+Book lookup and ISBN resolution for Dungeon Books, as a Go CLI. Internal tooling.
 
 ## Commands
 
 | Command | What it does |
 |---|---|
-| `marty book <title\|isbn>` | Look up a book with rich metadata (cover, description, rating, genres) |
-| `marty resolve <title>` | Resolve a title to a **verified** ISBN-13 |
-| `marty trending [query]` | Discover trending books from web buzz (Exa-backed, cached) |
-| `marty mcp` | Serve book lookup as MCP tools over stdio (for agents) |
+| `books book <title\|isbn>` | Look up a book with rich metadata (cover, description, rating, genres) |
+| `books resolve <title>` | Resolve a title to a **verified** ISBN-13 |
+| `books trending [query]` | Discover trending books from web buzz (Exa-backed, cached) |
+| `books mcp` | Serve book lookup as MCP tools over stdio (for agents) |
 
 An ISBN argument looks the book up directly; anything else is treated as a search phrase.
 Add `--json` for machine-readable output, or `--source hardcover|google|openlibrary` to
@@ -22,10 +22,10 @@ force a single source (default merges all three).
 whenever an ISBN is going to be written down somewhere.
 
 ```sh
-marty resolve "The Beauty of Games" --author "Frank Lantz"
+books resolve "The Beauty of Games" --author "Frank Lantz"
 # 9780262376303  The Beauty of Games — Frank Lantz (2023)  [confidence 1.00]
 
-marty resolve --isbn 9780262542951        # verify an ISBN you were handed
+books resolve --isbn 9780262542951        # verify an ISBN you were handed
 ```
 
 **Always pass `--author`.** A bare title mismatches badly: "Playing at the World" on its
@@ -48,14 +48,14 @@ Below `0.60` the result is marked unverified.
 
 ## Agents (MCP)
 
-`marty mcp` serves that same resolution over the Model Context Protocol, so an agent can
+`books mcp` serves that same resolution over the Model Context Protocol, so an agent can
 call it as a tool instead of shelling out and parsing text. Two read-only tools:
 `resolve_book` (title, author) and `resolve_isbn` (isbn). Both return the full result as
 structured content — `verified`, `confidence`, `reason`, `isbn13`, and metadata — so a
 caller cannot mistake a rejected guess for an answer.
 
 `.mcp.json` in this repo registers the server for Claude Code; approve it once when
-prompted. For any other client, the command is `go run ./cmd/marty mcp` (or the built
+prompted. For any other client, the command is `go run ./cmd/books mcp` (or the built
 binary with the `mcp` subcommand) from the repo root.
 
 ## Sources
@@ -68,9 +68,9 @@ binary with the `mcp` subcommand) from the repo root.
 
 Without a Hardcover token it degrades to Google Books + Open Library.
 
-Credentials come from the environment, then `./.env`, then `$MARTY_ENV`, then
-`/etc/dungeonbooks/marty.env` — first one to define a variable wins. Keeping the token in
-`/etc/dungeonbooks/marty.env` puts it outside every checkout, so it survives a `git pull`
+Credentials come from the environment, then `./.env`, then `$BOOKS_ENV`, then
+`/etc/dungeonbooks/books.env`. The first one to define a variable wins. Keeping the token in
+`/etc/dungeonbooks/books.env` puts it outside every checkout, so it survives a `git pull`
 and is shared by whatever launches the MCP server.
 
 ## Discovery
@@ -98,7 +98,7 @@ cp .env.example .env        # set HARDCOVER_API_TOKEN
 make hooks                  # enable the pre-commit hook (once per clone)
 make check                  # build + vet + gofmt + test (what CI runs)
 make run ARGS='book "the will of the many"'
-make install                # put the marty binary on your PATH
+make install                # put the books binary on your PATH
 ```
 
 Targets: `build`, `test`, `vet`, `fmt`, `fmt-check`, `tidy`, `run`, `install`, `clean`,

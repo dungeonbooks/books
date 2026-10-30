@@ -8,9 +8,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/dungeonbooks/marty-cli/internal/discover"
-	"github.com/dungeonbooks/marty-cli/internal/enrich"
-	"github.com/dungeonbooks/marty-cli/internal/platform/config"
+	"github.com/dungeonbooks/books/internal/discover"
+	"github.com/dungeonbooks/books/internal/enrich"
+	"github.com/dungeonbooks/books/internal/platform/config"
 	"github.com/spf13/cobra"
 )
 
@@ -41,7 +41,7 @@ func trendingCmd() *cobra.Command {
 					defer cache.Close()
 					svc.WithCache(cache)
 				} else {
-					fmt.Fprintf(cmd.ErrOrStderr(), "marty: cache disabled: %v\n", err)
+					fmt.Fprintf(cmd.ErrOrStderr(), "books: cache disabled: %v\n", err)
 				}
 			}
 			if exa, ok := exaProvider(svc); ok {
@@ -49,7 +49,7 @@ func trendingCmd() *cobra.Command {
 					callSpend += cost
 					if cache != nil {
 						if err := cache.RecordSpend(cost); err != nil {
-							fmt.Fprintf(cmd.ErrOrStderr(), "marty: record spend: %v\n", err)
+							fmt.Fprintf(cmd.ErrOrStderr(), "books: record spend: %v\n", err)
 						}
 					}
 				})
@@ -92,7 +92,7 @@ func openTrendingCache(cfg config.Config) (*discover.Cache, error) {
 		if err != nil {
 			return nil, err
 		}
-		path = filepath.Join(dir, ".local", "share", "marty", "cache.db")
+		path = filepath.Join(dir, ".local", "share", "books", "cache.db")
 	}
 	if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 		return nil, err

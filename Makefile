@@ -1,8 +1,8 @@
 .PHONY: build test vet fmt fmt-check tidy run install clean check hooks
 
-# build the marty binary into the repo root (gitignored); run it with ./marty
+# build the books binary into the repo root (gitignored); run it with ./books
 build:
-	go build -o marty ./cmd/marty
+	go build -o books ./cmd/books
 
 # run tests
 test:
@@ -24,14 +24,14 @@ tidy:
 
 # run the CLI: make run ARGS='book "the will of the many"'
 run:
-	go run ./cmd/marty $(ARGS)
+	go run ./cmd/books $(ARGS)
 
-# install the marty binary onto your PATH
+# install the books binary onto your PATH
 install:
-	go install ./cmd/marty
+	go install ./cmd/books
 
 clean:
-	rm -f marty
+	rm -f books
 
 # build + vet + gofmt + test — the gate CI and the pre-commit hook run (leaves no binary)
 check: fmt-check vet test

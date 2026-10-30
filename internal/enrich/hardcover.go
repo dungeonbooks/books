@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/bookmeta"
 )
 
 type Hardcover struct {

@@ -1,4 +1,4 @@
-// Package mcpsrv exposes marty's book resolution over the Model Context
+// Package mcpsrv exposes book resolution over the Model Context
 // Protocol, so an agent can look a book up as a tool call instead of shelling
 // out and parsing text.
 //
@@ -9,7 +9,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/dungeonbooks/marty-cli/internal/resolve"
+	"github.com/dungeonbooks/books/internal/resolve"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
@@ -39,11 +39,11 @@ type isbnArgs struct {
 	ISBN string `json:"isbn" jsonschema:"the ISBN-13 to verify; hyphens and spaces are fine"`
 }
 
-// New builds the marty MCP server over the given lookup.
+// New builds the books MCP server over the given lookup.
 func New(lk resolve.Lookup) *mcp.Server {
 	s := mcp.NewServer(&mcp.Implementation{
-		Name:    "marty",
-		Title:   "Marty — book lookup",
+		Name:    "books",
+		Title:   "Book lookup",
 		Version: Version,
 	}, nil)
 

@@ -7,8 +7,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
-	"github.com/dungeonbooks/marty-cli/internal/discover"
+	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/discover"
 )
 
 func renderBook(w io.Writer, b bookmeta.Book, asJSON bool) error {

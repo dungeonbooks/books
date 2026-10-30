@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/dungeonbooks/marty-cli/internal/cli"
+	"github.com/dungeonbooks/books/internal/cli"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 		// The command already reported why. Exit 1 is the whole message.
 		os.Exit(1)
 	default:
-		fmt.Fprintln(os.Stderr, "marty:", err)
+		fmt.Fprintln(os.Stderr, "books:", err)
 		os.Exit(1)
 	}
 }

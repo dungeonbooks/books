@@ -3,7 +3,7 @@
 *.env.local
 
 # build output
-/marty
+/books
 /bin/
 /dist/
 
