@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/dungeonbooks/marty-cli/internal/enrich"
-	"github.com/dungeonbooks/marty-cli/internal/platform/config"
+	"github.com/dungeonbooks/books/internal/enrich"
+	"github.com/dungeonbooks/books/internal/platform/config"
 	"github.com/spf13/cobra"
 )
 
 func bookCmd() *cobra.Command {
 	var source string
 	c := &cobra.Command{
-		Use:   "book <title|isbn>",
+		Use:   "show <title|isbn>",
 		Short: "Look up a book with rich metadata",
 		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {

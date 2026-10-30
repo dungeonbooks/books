@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
-	"github.com/dungeonbooks/marty-cli/internal/enrich"
+	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/enrich"
 )
 
 // stub answers per source and records the order it was asked. It mirrors the

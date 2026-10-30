@@ -9,7 +9,7 @@ import (
 	"regexp"
 	"strconv"
 
-	"github.com/dungeonbooks/marty-cli/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/bookmeta"
 )
 
 type OpenLibrary struct {
@@ -105,7 +105,7 @@ func (o *OpenLibrary) getJSON(ctx context.Context, u string, v any) error {
 	if err != nil {
 		return err
 	}
-	req.Header.Set("User-Agent", "dungeonbooks-marty/0.1")
+	req.Header.Set("User-Agent", "dungeonbooks-books/0.1")
 	resp, err := o.http.Do(req)
 	if err != nil {
 		return err

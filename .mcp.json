@@ -1,8 +1,8 @@
 {
   "mcpServers": {
-    "marty": {
+    "books": {
       "command": "go",
-      "args": ["run", "./cmd/marty", "mcp"]
+      "args": ["run", "./cmd/books", "mcp"]
     }
   }
 }
