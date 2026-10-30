@@ -157,3 +157,17 @@ func TestHardcoverSearchTopParses(t *testing.T) {
 		t.Fatalf("bad url: %s", b.HardcoverURL)
 	}
 }
+
+func TestHardcoverAuthHeader(t *testing.T) {
+	for in, want := range map[string]string{
+		"tok":        "Bearer tok",
+		"Bearer tok": "Bearer tok",
+		"bearer tok": "bearer tok",
+		" tok\n":     "Bearer tok",
+		"":           "",
+	} {
+		if got := authHeader(in); got != want {
+			t.Errorf("authHeader(%q) = %q, want %q", in, got, want)
+		}
+	}
+}
