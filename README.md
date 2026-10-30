@@ -6,7 +6,7 @@ Book lookup and ISBN resolution for Dungeon Books, as a Go CLI. Internal tooling
 
 | Command | What it does |
 |---|---|
-| `books book <title\|isbn>` | Look up a book with rich metadata (cover, description, rating, genres) |
+| `books show <title\|isbn>` | Look up a book with rich metadata (cover, description, rating, genres) |
 | `books resolve <title>` | Resolve a title to a **verified** ISBN-13 |
 | `books trending [query]` | Discover trending books from web buzz (Exa-backed, cached) |
 | `books mcp` | Serve book lookup as MCP tools over stdio (for agents) |
@@ -17,7 +17,7 @@ force a single source (default merges all three).
 
 ## Resolving
 
-`book` returns whatever the sources rank first, which is occasionally the wrong book.
+`show` returns whatever the sources rank first, which is occasionally the wrong book.
 `resolve` adds the verification you'd otherwise have to do by hand, and is what you want
 whenever an ISBN is going to be written down somewhere.
 
@@ -60,7 +60,7 @@ binary with the `mcp` subcommand) from the repo root.
 
 ## Sources
 
-`book` layers three sources, stopping once the important fields are filled:
+`show` layers three sources, stopping once the important fields are filled:
 
 1. **Hardcover** (`HARDCOVER_API_TOKEN`) — ratings, genre tags, descriptions, new releases.
 2. **Google Books** (`GOOGLE_BOOKS_API_KEY`, optional) — broad coverage fallback.
@@ -97,7 +97,7 @@ Requires Go 1.24+.
 cp .env.example .env        # set HARDCOVER_API_TOKEN
 make hooks                  # enable the pre-commit hook (once per clone)
 make check                  # build + vet + gofmt + test (what CI runs)
-make run ARGS='book "the will of the many"'
+make run ARGS='show "the will of the many"'
 make install                # put the books binary on your PATH
 ```
 

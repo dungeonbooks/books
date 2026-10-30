@@ -12,7 +12,7 @@ import (
 func bookCmd() *cobra.Command {
 	var source string
 	c := &cobra.Command{
-		Use:   "book <title|isbn>",
+		Use:   "show <title|isbn>",
 		Short: "Look up a book with rich metadata",
 		Args:  cobra.MinimumNArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {

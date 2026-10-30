@@ -22,7 +22,7 @@ fmt-check:
 tidy:
 	go mod tidy
 
-# run the CLI: make run ARGS='book "the will of the many"'
+# run the CLI: make run ARGS='show "the will of the many"'
 run:
 	go run ./cmd/books $(ARGS)
 
