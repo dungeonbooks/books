@@ -9,6 +9,7 @@ import (
 	"testing"
 
 	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/clierr"
 )
 
 type fakeOL struct{ byISBN, search bookmeta.Book }
@@ -155,5 +156,20 @@ func TestHardcoverSearchTopParses(t *testing.T) {
 	}
 	if b.HardcoverURL != "https://hardcover.app/books/sublimation" {
 		t.Fatalf("bad url: %s", b.HardcoverURL)
+	}
+}
+
+func TestProviderStatusMapsToExitCode(t *testing.T) {
+	for status, want := range map[int]int{401: 4, 403: 4, 429: 7, 500: 5, 400: 5} {
+		srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			w.WriteHeader(status)
+		}))
+		g := NewGoogleBooks("", srv.Client())
+		g.base = srv.URL
+		_, err := g.Search(context.Background(), "dune")
+		srv.Close()
+		if got := clierr.Code(err); got != want {
+			t.Errorf("status %d: exit code %d, want %d (err %v)", status, got, want, err)
+		}
 	}
 }

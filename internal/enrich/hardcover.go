@@ -8,6 +8,7 @@ import (
 	"net/http"
 
 	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/clierr"
 )
 
 type Hardcover struct {
@@ -144,11 +145,11 @@ func (h *Hardcover) do(ctx context.Context, query string, vars map[string]any, o
 	req.Header.Set("Authorization", h.token)
 	resp, err := h.http.Do(req)
 	if err != nil {
-		return err
+		return clierr.Upstream(err)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("hardcover: status %d", resp.StatusCode)
+		return statusErr("hardcover", resp.StatusCode)
 	}
 	var env struct {
 		Data   json.RawMessage `json:"data"`
