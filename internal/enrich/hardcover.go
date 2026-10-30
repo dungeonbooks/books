@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/dungeonbooks/books/internal/bookmeta"
 )
@@ -17,7 +18,17 @@ type Hardcover struct {
 }
 
 func NewHardcover(token string, hc *http.Client) *Hardcover {
-	return &Hardcover{http: hc, url: "https://api.hardcover.app/v1/graphql", token: token}
+	return &Hardcover{http: hc, url: "https://api.hardcover.app/v1/graphql", token: authHeader(token)}
+}
+
+// authHeader accepts the token as Hardcover's account page shows it ("Bearer ...")
+// or bare, as it tends to be stored in secret managers.
+func authHeader(token string) string {
+	token = strings.TrimSpace(token)
+	if token == "" || strings.HasPrefix(strings.ToLower(token), "bearer ") {
+		return token
+	}
+	return "Bearer " + token
 }
 
 func (h *Hardcover) Enabled() bool { return h.token != "" }
