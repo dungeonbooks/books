@@ -10,6 +10,7 @@ import (
 	"strconv"
 
 	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/clierr"
 )
 
 type OpenLibrary struct {
@@ -108,11 +109,11 @@ func (o *OpenLibrary) getJSON(ctx context.Context, u string, v any) error {
 	req.Header.Set("User-Agent", "dungeonbooks-books/0.1")
 	resp, err := o.http.Do(req)
 	if err != nil {
-		return err
+		return clierr.Upstream(err)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("openlibrary: status %d", resp.StatusCode)
+		return statusErr("openlibrary", resp.StatusCode)
 	}
 	return json.NewDecoder(resp.Body).Decode(v)
 }

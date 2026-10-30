@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"github.com/dungeonbooks/books/internal/bookmeta"
+	"github.com/dungeonbooks/books/internal/clierr"
 )
 
 type GoogleBooks struct {
@@ -64,11 +65,11 @@ func (g *GoogleBooks) query(ctx context.Context, q string) (bookmeta.Book, error
 	}
 	resp, err := g.http.Do(req)
 	if err != nil {
-		return bookmeta.Book{}, err
+		return bookmeta.Book{}, clierr.Upstream(err)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return bookmeta.Book{}, fmt.Errorf("googlebooks: status %d", resp.StatusCode)
+		return bookmeta.Book{}, statusErr("googlebooks", resp.StatusCode)
 	}
 	if err := json.NewDecoder(resp.Body).Decode(&raw); err != nil {
 		return bookmeta.Book{}, err

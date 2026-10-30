@@ -147,3 +147,16 @@ func (s *Service) auto(ctx context.Context, query, isbn string) (bookmeta.Book, 
 	}
 	return b, nil
 }
+
+// statusErr types a provider's non-200 response so the exit code tells the
+// caller whether to fix credentials, back off, or retry.
+func statusErr(provider string, code int) error {
+	err := fmt.Errorf("%s: status %d", provider, code)
+	switch code {
+	case http.StatusUnauthorized, http.StatusForbidden:
+		return clierr.Auth(err)
+	case http.StatusTooManyRequests:
+		return clierr.RateLimited(err)
+	}
+	return clierr.Upstream(err)
+}
